@@ -764,6 +764,63 @@
   text-decoration:none;
 }
 
+
+    .task-page{
+      display:none;
+    }
+    .task-page.active{
+      display:block;
+      animation:fadeSlide .25s ease;
+    }
+    @keyframes fadeSlide{
+      from{opacity:0; transform:translateY(10px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+    .task-wizard-nav{
+      margin-top:18px;
+      padding:14px;
+      border:1px solid var(--border-weak);
+      border-radius:18px;
+      background:rgba(255,255,255,.86);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      box-shadow:0 8px 18px rgba(27,90,40,.05);
+    }
+    .task-wizard-nav .step-indicator{
+      color:var(--muted);
+      font-weight:700;
+      text-align:center;
+      flex:1;
+    }
+    .task-wizard-nav button{
+      min-width:120px;
+    }
+    .final-feedback{
+      padding:24px;
+      margin-top:20px;
+      background:linear-gradient(180deg,#ffffff,#f9fcf7);
+    }
+    .final-feedback-text{
+      border:1px solid var(--border-weak);
+      border-radius:18px;
+      padding:18px;
+      background:linear-gradient(135deg,var(--green-50),#fff);
+      color:var(--green-800);
+      font-weight:700;
+      line-height:1.6;
+      margin-top:14px;
+    }
+    @media (max-width:640px){
+      .task-wizard-nav{
+        flex-direction:column;
+      }
+      .task-wizard-nav button{
+        width:100%;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -916,7 +973,7 @@
 
     <div class="tasks-grid" id="aufgabenStart">
       <!-- Aufgabe 1 -->
-      <section class="card task" data-task-id="t1">
+      <section class="card task task-page" data-task-id="t1">
         <div class="task-head">
           <div>
             <h3>1. Was beschreibt die Mitose?</h3>
@@ -939,7 +996,7 @@
       </section>
 
       <!-- Aufgabe 2 -->
-      <section class="card task" data-task-id="t2">
+      <section class="card task task-page" data-task-id="t2">
         <div class="task-head">
           <div>
             <h3>2. Lückentext zur Interphase</h3>
@@ -970,7 +1027,7 @@
       </section>
 
       <!-- Aufgabe 3 -->
-      <section class="card task" data-task-id="t3">
+      <section class="card task task-page" data-task-id="t3">
         <div class="task-head">
           <div>
             <h3>3. Ordne die Phasen ihren Merkmalen zu</h3>
@@ -1033,7 +1090,7 @@
       </section>
 
       <!-- Aufgabe 4 -->
-      <section class="card task" data-task-id="t4">
+      <section class="card task task-page" data-task-id="t4">
         <div class="task-head">
           <div>
             <h3>4. Wahr oder falsch?</h3>
@@ -1073,7 +1130,7 @@
       </section>
 
       <!-- Aufgabe 5 -->
-      <section class="card task" data-task-id="t5">
+      <section class="card task task-page" data-task-id="t5">
         <div class="task-head">
           <div>
             <h3>5. Kurzantwort: Bedeutung der Mitose</h3>
@@ -1093,7 +1150,7 @@
       </section>
 
       <!-- Aufgabe 6 -->
-      <section class="card task" data-task-id="t6">
+      <section class="card task task-page" data-task-id="t6">
         <div class="task-head">
           <div>
             <h3>6. Bring die Reihenfolge in Ordnung</h3>
@@ -1116,7 +1173,7 @@
       </section>
 
       <!-- Aufgabe 7 -->
-      <section class="card task" data-task-id="t7">
+      <section class="card task task-page" data-task-id="t7">
         <div class="task-head">
           <div>
             <h3>7. Erkenne die richtige Aussage zur Cytokinese</h3>
@@ -1139,7 +1196,7 @@
       </section>
 
       <!-- Aufgabe 8 -->
-      <section class="card task" data-task-id="t8">
+      <section class="card task task-page" data-task-id="t8">
         <div class="task-head">
           <div>
             <h3>8. Transferfrage</h3>
@@ -1159,7 +1216,13 @@
       </section>
     </div>
 
-    <section class="card summary" id="summaryArea">
+    <div class="task-wizard-nav" id="wizardNav">
+      <button class="btn-secondary" id="prevTaskBtn" onclick="prevPage()">← Zurück</button>
+      <div class="step-indicator" id="stepIndicator">Aufgabe 1 von 8</div>
+      <button class="btn-primary" id="nextTaskBtn" onclick="nextPage()">Weiter →</button>
+    </div>
+
+    <section class="card summary task-page" id="summaryArea">
       <h2 class="section-title">Auswertung</h2>
       <p class="section-sub">Hier siehst du deinen aktuellen Stand. Die PDF-Datei fasst alle Aufgaben und Antworten sauber zusammen.</p>
 
@@ -1180,6 +1243,10 @@
           <div class="small">Lösung verwendet / offen</div>
           <div class="num" id="sumSolvedOrOpen">8</div>
         </div>
+      </div>
+
+      <div class="final-feedback-text" id="finalFeedbackText">
+        Bearbeite die Aufgaben und gehe anschließend zur Auswertung.
       </div>
 
       <div class="footer-actions">
@@ -1303,6 +1370,7 @@ function setFeedback(taskId, type, text){
 function setStatus(taskId, text){
   document.getElementById("status-" + taskId).textContent = text;
   updateSummary();
+  showPage(0);
 }
 
 function revealSolve(taskId){
@@ -1673,7 +1741,98 @@ function resetAll(){
   updateSummary();
 }
 
+
+let currentPageIndex = 0;
+const pageIds = ["t1","t2","t3","t4","t5","t6","t7","t8","summaryArea"];
+
+function showPage(index){
+  currentPageIndex = Math.max(0, Math.min(index, pageIds.length - 1));
+  document.querySelectorAll(".task-page").forEach(el => el.classList.remove("active"));
+  const currentId = pageIds[currentPageIndex];
+  const currentEl = currentId === "summaryArea"
+    ? document.getElementById("summaryArea")
+    : document.querySelector('[data-task-id="' + currentId + '"]');
+  if(currentEl) currentEl.classList.add("active");
+
+  const prevBtn = document.getElementById("prevTaskBtn");
+  const nextBtn = document.getElementById("nextTaskBtn");
+  const indicator = document.getElementById("stepIndicator");
+
+  if(prevBtn) prevBtn.disabled = currentPageIndex === 0;
+  if(nextBtn){
+    if(currentPageIndex === pageIds.length - 1){
+      nextBtn.textContent = "Zur Auswertung";
+      nextBtn.disabled = true;
+    } else if(currentPageIndex === pageIds.length - 2){
+      nextBtn.textContent = "Auswertung →";
+      nextBtn.disabled = false;
+    } else {
+      nextBtn.textContent = "Weiter →";
+      nextBtn.disabled = false;
+    }
+  }
+
+  if(indicator){
+    indicator.textContent = currentPageIndex < 8
+      ? "Aufgabe " + (currentPageIndex + 1) + " von 8"
+      : "Auswertung";
+  }
+
+  updateFinalFeedback();
+  const target = currentPageIndex < 8 ? "aufgabenStart" : "summaryArea";
+  setTimeout(() => {
+    const el = document.getElementById(target);
+    if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+  }, 50);
+}
+
+function nextPage(){
+  showPage(currentPageIndex + 1);
+}
+
+function prevPage(){
+  showPage(currentPageIndex - 1);
+}
+
+function updateFinalFeedback(){
+  const box = document.getElementById("finalFeedbackText");
+  if(!box) return;
+
+  const ids = Object.keys(tasks);
+  let score = 0;
+  let first = 0;
+  let second = 0;
+  let open = 0;
+  let solutionUsed = 0;
+
+  ids.forEach(id => {
+    const label = taskState[id].statusLabel;
+    if(label === "1. Versuch ✅"){ score++; first++; }
+    else if(label === "2. Versuch ✅"){ score++; second++; }
+    else if(label === "Lösung verwendet ❌"){ solutionUsed++; }
+    else { open++; }
+  });
+
+  const percent = Math.round(score / ids.length * 100);
+  let message = "";
+  if(open > 0){
+    message = "Du hast noch " + open + " Aufgabe(n) nicht vollständig gelöst. Bearbeite sie zuerst weiter oder lade den Zwischenstand als PDF herunter.";
+  } else if(percent >= 88){
+    message = "Sehr starke Leistung! Du erklärst die Mitosephasen sicher und hast die wichtigsten Fachbegriffe gut verstanden.";
+  } else if(percent >= 63){
+    message = "Gute Leistung! Die Grundidee der Mitose sitzt. Wiederhole vor allem die Aufgaben, bei denen du einen Tipp oder die Lösung benötigt hast.";
+  } else if(percent >= 38){
+    message = "Du hast eine Grundlage gelegt. Schau dir den Lerntext und das Video noch einmal an und wiederhole besonders Interphase, Metaphase, Anaphase und Cytokinese.";
+  } else {
+    message = "Bitte wiederhole den Lerninhalt noch einmal gründlich. Arbeite danach die Aufgaben erneut Schritt für Schritt durch.";
+  }
+
+  box.textContent = "Feedback: " + message + " Ergebnis: " + score + " von " + ids.length + " Punkten. Im 1. Versuch richtig: " + first + ". Im 2. Versuch richtig: " + second + ". Lösung verwendet: " + solutionUsed + ".";
+}
+
+
 updateSummary();
+showPage(0);
 </script>
 </body>
 </html>
