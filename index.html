@@ -3,11 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biologie – Mitose | Interaktive Lernaufgabe</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <title>Biologie – Mitose | Interaktive Lernaufgabe</title>  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <style>
     :root{
       --bg:#f5f9f2;
@@ -50,7 +46,7 @@
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:'DM Sans',sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       color:var(--text);
       background:
         radial-gradient(circle at top left, rgba(159,225,203,0.25), transparent 28%),
@@ -147,7 +143,7 @@
       font-size:22px;
     }
     .brand h1{
-      font-family:'Playfair Display',serif;
+      font-family: Georgia, 'Times New Roman', serif;
       font-size:1.4rem;
       margin:0;
       line-height:1.05;
@@ -224,7 +220,7 @@
       margin-bottom:14px;
     }
     .hero h2{
-      font-family:'Playfair Display',serif;
+      font-family: Georgia, 'Times New Roman', serif;
       font-size:2.35rem;
       margin:0 0 10px;
       line-height:1.05;
@@ -303,7 +299,7 @@
     }
     .section-title{
       margin:0 0 8px;
-      font-family:'Playfair Display',serif;
+      font-family: Georgia, 'Times New Roman', serif;
       font-size:1.7rem;
     }
     .section-sub{
@@ -593,6 +589,122 @@
       box-shadow:0 16px 35px rgba(27,90,40,.18);
     }
 
+
+    .learning-content{
+      border:1px solid var(--border-weak);
+      border-radius:18px;
+      padding:18px;
+      background:linear-gradient(180deg,#ffffff,#fbfdf9);
+      line-height:1.72;
+    }
+    .learning-content p{
+      color:var(--text);
+      margin:0 0 14px;
+    }
+    .learning-content strong{
+      color:var(--green-800);
+      font-weight:700;
+    }
+    .video-card{
+      margin-top:20px;
+      border:1px solid var(--border-strong);
+      border-radius:18px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 10px 24px rgba(27,90,40,0.06);
+    }
+    .video-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      background:linear-gradient(135deg,var(--green-50),var(--teal-50));
+      border-bottom:1px solid var(--border-weak);
+      color:var(--green-800);
+    }
+    .video-head span{
+      font-size:.9rem;
+      color:var(--muted);
+      font-weight:600;
+    }
+    .video-card iframe{
+      display:block;
+      width:100%;
+      height:420px;
+      border:0;
+      background:#fff;
+    }
+    .video-fallback{
+      padding:10px 14px 14px;
+      margin:0;
+      text-align:center;
+    }
+    .video-fallback a{
+      color:var(--green-600);
+      font-weight:700;
+      text-decoration:none;
+    }
+    .video-fallback a:hover{
+      text-decoration:underline;
+    }
+
+.video-placeholder{
+  padding:30px;
+  text-align:center;
+}
+.play-icon{
+  font-size:40px;
+  margin-bottom:10px;
+}
+.video-button{
+  display:inline-block;
+  margin-top:10px;
+  padding:12px 18px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-light));
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+}
+
+
+.video-thumb-link{
+  display:block;
+  text-decoration:none;
+}
+.video-thumb-link:hover .video-image{
+  transform:scale(1.01);
+  filter:saturate(1.06);
+}
+.video-image{
+  transition:transform .2s ease, filter .2s ease;
+  background:var(--green-50);
+}
+
+.video-image{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+.play-overlay{
+  font-size:40px;
+  margin:-60px auto 10px;
+  width:60px;
+  height:60px;
+  background:rgba(0,0,0,0.6);
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.video-button:hover{
+  opacity:0.9;
+}
+
+
     .small{
       font-size:.92rem;
       color:var(--muted);
@@ -680,7 +792,7 @@
           </div>
           <div class="meta">
             <div class="label">Niveau</div>
-            <div class="value">Sek. I / II</div>
+            <div class="value">Sekundarstufe I</div>
           </div>
           <div class="meta">
             <div class="label">Geräte</div>
@@ -698,24 +810,73 @@
     </section>
 
     <section class="card content-entry" id="contentArea">
-      <h2 class="section-title">Lerninhalte eingeben oder anpassen</h2>
+      <h2 class="section-title">📘 Mitose – Lerninhalte</h2>
       <p class="section-sub">
-        Hier können Lehrkraft oder Lernende die Inhalte vor dem Start der Aufgaben eintragen,
-        ergänzen oder verändern. Standardmäßig ist bereits eine kompakte Zusammenfassung zur Mitose eingetragen.
+        Lies zuerst den Lerntext und schau dir bei Bedarf das Video an. Danach bearbeitest du die Aufgaben.
       </p>
+
       <div class="input-grid">
-        <div>
-          <label for="contentInput" class="small">Bearbeitbarer Inhaltsbereich</label>
-          <textarea id="contentInput">Mitose ist die Teilung einer Mutterzelle in zwei genetisch identische Tochterzellen. Sie gehört mit der Interphase zum Zellzyklus. In der Interphase bereitet sich die Zelle vor: In der G1-Phase wächst sie und bildet Organellen, in der S-Phase wird die DNA verdoppelt, in der G2-Phase erfolgt die Vorbereitung auf die Teilung.
+        <div class="learning-content" id="contentInput">
+          <h3 style="margin-top:0; color:var(--green-800);">🧬 Mitose – Überblick</h3>
 
-Die Mitosephasen sind Prophase, Prometaphase, Metaphase, Anaphase und Telophase. In der Prophase kondensiert das Chromatin zu Chromosomen. In der Prometaphase lösen sich Kernhülle und Nucleolus auf und der Spindelapparat bildet sich aus. In der Metaphase ordnen sich die Chromosomen in der Äquatorialebene an. In der Anaphase werden die Schwesterchromatiden getrennt und zu den Zellpolen gezogen. In der Telophase entstehen neue Kernhüllen.
+          <p>
+            Die <strong>Mitose</strong> ist die Teilung einer Mutterzelle in zwei genetisch identische Tochterzellen.
+            Sie ist ein wichtiger Teil des Zellzyklus und sorgt dafür, dass neue Körperzellen mit derselben
+            Erbinformation entstehen.
+          </p>
 
-Anschließend trennt die Cytokinese das Cytoplasma. So entstehen zwei genetisch identische Tochterzellen. Die Mitose ist wichtig für Wachstum, Regeneration und Gewebeerneuerung.</textarea>
+          <p>
+            Vor der eigentlichen Mitose findet die <strong>Interphase</strong> statt. In der
+            <strong>G1-Phase</strong> wächst die Zelle und bildet Zellbestandteile. In der
+            <strong>S-Phase</strong> wird die DNA verdoppelt. In der <strong>G2-Phase</strong>
+            bereitet sich die Zelle weiter auf die Zellteilung vor.
+          </p>
+
+          <p>
+            Die Mitose läuft in mehreren Phasen ab: In der <strong>Prophase</strong> kondensiert das Chromatin
+            zu sichtbaren Chromosomen. In der <strong>Prometaphase</strong> lösen sich Kernhülle und Nucleolus
+            auf und der Spindelapparat bildet sich aus. In der <strong>Metaphase</strong> ordnen sich die
+            Chromosomen in der Äquatorialebene an. In der <strong>Anaphase</strong> werden die Schwesterchromatiden
+            getrennt und zu den Zellpolen gezogen. In der <strong>Telophase</strong> entstehen neue Kernhüllen.
+          </p>
+
+          <p>
+            Anschließend folgt die <strong>Cytokinese</strong>. Dabei wird das Cytoplasma geteilt, sodass zwei
+            getrennte, genetisch identische Tochterzellen entstehen. Die Mitose ist besonders wichtig für
+            <strong>Wachstum</strong>, <strong>Regeneration</strong>, <strong>Wundheilung</strong> und
+            <strong>Gewebeerneuerung</strong>.
+          </p>
+
+          <div class="video-card">
+            <div class="video-head">
+              <strong>🎥 Erklärvideo zur Mitose</strong>
+              <span>Studyflix</span>
+            </div>
+
+            <div class="video-placeholder">
+        <a href="https://studyflix.de/biologie/mitose-1807" target="_blank" rel="noopener" class="video-thumb-link"><img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20900%20520%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23EAF3DE%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.55%22%20stop-color%3D%22%23E1F5EE%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23C0DD97%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22cell%22%20cx%3D%2250%25%22%20cy%3D%2245%25%22%20r%3D%2255%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ffffff%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220.75%22%20stop-color%3D%22%23dff1d2%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2397C459%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%20%20%3Cfilter%20id%3D%22shadow%22%20x%3D%22-20%25%22%20y%3D%22-20%25%22%20width%3D%22140%25%22%20height%3D%22140%25%22%3E%0A%20%20%20%20%20%20%3CfeDropShadow%20dx%3D%220%22%20dy%3D%2214%22%20stdDeviation%3D%2214%22%20flood-color%3D%22%2327500A%22%20flood-opacity%3D%220.18%22/%3E%0A%20%20%20%20%3C/filter%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3Crect%20width%3D%22900%22%20height%3D%22520%22%20fill%3D%22url%28%23bg%29%22/%3E%0A%0A%20%20%3Cg%20opacity%3D%220.22%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M80%2080%20C160%2010%2C%20240%20150%2C%20320%2070%20S490%20120%2C%20560%2055%20S730%20110%2C%20820%2045%22%20fill%3D%22none%22%20stroke%3D%22%231D9E75%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M70%20445%20C150%20370%2C%20250%20500%2C%20345%20410%20S515%20455%2C%20610%20385%20S760%20450%2C%20850%20365%22%20fill%3D%22none%22%20stroke%3D%22%23639922%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2295%22%20cy%3D%2278%22%20r%3D%227%22%20fill%3D%22%233B6D11%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22178%22%20cy%3D%2265%22%20r%3D%227%22%20fill%3D%22%230F6E56%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22265%22%20cy%3D%22103%22%20r%3D%227%22%20fill%3D%22%233B6D11%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22610%22%20cy%3D%22385%22%20r%3D%227%22%20fill%3D%22%230F6E56%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22710%22%20cy%3D%22411%22%20r%3D%227%22%20fill%3D%22%233B6D11%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Ctext%20x%3D%22450%22%20y%3D%2276%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2242%22%20font-weight%3D%22700%22%20fill%3D%22%2327500A%22%3EMitose%3C/text%3E%0A%20%20%3Ctext%20x%3D%22450%22%20y%3D%22112%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2221%22%20fill%3D%22%234a6550%22%3EAus%20einer%20Zelle%20entstehen%20zwei%20genetisch%20identische%20Tochterzellen%3C/text%3E%0A%0A%20%20%3Cg%20filter%3D%22url%28%23shadow%29%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22450%22%20cy%3D%22285%22%20r%3D%22125%22%20fill%3D%22url%28%23cell%29%22%20stroke%3D%22%233B6D11%22%20stroke-width%3D%226%22/%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22450%22%20cy%3D%22285%22%20rx%3D%2274%22%20ry%3D%2255%22%20fill%3D%22%23E1F5EE%22%20stroke%3D%22%230F6E56%22%20stroke-width%3D%225%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M405%20255%20C425%20280%2C%20405%20305%2C%20425%20326%22%20fill%3D%22none%22%20stroke%3D%22%233B6D11%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M445%20250%20C470%20278%2C%20430%20306%2C%20458%20330%22%20fill%3D%22none%22%20stroke%3D%22%231D9E75%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M490%20255%20C470%20281%2C%20505%20306%2C%20480%20328%22%20fill%3D%22none%22%20stroke%3D%22%23639922%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20filter%3D%22url%28%23shadow%29%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22235%22%20cy%3D%22350%22%20r%3D%2278%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23639922%22%20stroke-width%3D%225%22/%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22235%22%20cy%3D%22350%22%20rx%3D%2242%22%20ry%3D%2233%22%20fill%3D%22%23E1F5EE%22%20stroke%3D%22%230F6E56%22%20stroke-width%3D%224%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M210%20335%20C225%20350%2C%20205%20365%2C%20222%20379%22%20fill%3D%22none%22%20stroke%3D%22%233B6D11%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M252%20333%20C236%20350%2C%20263%20364%2C%20246%20380%22%20fill%3D%22none%22%20stroke%3D%22%231D9E75%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20filter%3D%22url%28%23shadow%29%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22665%22%20cy%3D%22350%22%20r%3D%2278%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23639922%22%20stroke-width%3D%225%22/%3E%0A%20%20%20%20%3Cellipse%20cx%3D%22665%22%20cy%3D%22350%22%20rx%3D%2242%22%20ry%3D%2233%22%20fill%3D%22%23E1F5EE%22%20stroke%3D%22%230F6E56%22%20stroke-width%3D%224%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M640%20335%20C655%20350%2C%20635%20365%2C%20652%20379%22%20fill%3D%22none%22%20stroke%3D%22%233B6D11%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M682%20333%20C666%20350%2C%20693%20364%2C%20676%20380%22%20fill%3D%22none%22%20stroke%3D%22%231D9E75%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cpath%20d%3D%22M340%20345%20C370%20390%2C%20415%20408%2C%20450%20410%20C485%20408%2C%20530%20390%2C%20560%20345%22%20fill%3D%22none%22%20stroke%3D%22%2327500A%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.55%22/%3E%0A%20%20%3Cpolygon%20points%3D%22562%2C345%20543%2C350%20556%2C364%22%20fill%3D%22%2327500A%22%20opacity%3D%220.55%22/%3E%0A%20%20%3Cpolygon%20points%3D%22338%2C345%20357%2C350%20344%2C364%22%20fill%3D%22%2327500A%22%20opacity%3D%220.55%22/%3E%0A%0A%20%20%3Cg%3E%0A%20%20%20%20%3Crect%20x%3D%22330%22%20y%3D%22438%22%20width%3D%22240%22%20height%3D%2244%22%20rx%3D%2222%22%20fill%3D%22%233B6D11%22/%3E%0A%20%20%20%20%3Cpolygon%20points%3D%22425%2C449%20425%2C471%20446%2C460%22%20fill%3D%22%23fff%22/%3E%0A%20%20%20%20%3Ctext%20x%3D%22470%22%20y%3D%22467%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EVideo%20%C3%B6ffnen%3C/text%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="Mitose Illustration" class="video-image"></a>
+        <div class="play-overlay">▶</div>
+        <h3>Mitose-Video auf Studyflix ansehen</h3>
+        <p>Klicke auf das Bild, um das Video zu öffnen.</p>
+        <a class="video-button" href="https://studyflix.de/biologie/mitose-1807" target="_blank" rel="noopener">▶ Video öffnen</a>
+      </div>
+              <h3>Mitose-Video auf Studyflix ansehen</h3>
+              <p>
+                Das Video kann aus technischen Gründen nicht direkt eingebettet werden.
+                Öffne es über den Button in einem neuen Tab.
+              </p>
+              <a class="video-button" href="https://studyflix.de/biologie/mitose-1807" target="_blank" rel="noopener">
+                ▶ Video öffnen
+              </a>
+            </div>
+          </div>
         </div>
+
         <aside class="helper-panel">
           <h3>💡 Arbeitshinweise</h3>
           <ul>
-            <li>Lies zuerst die Lerninhalte.</li>
+            <li>Lies zuerst den Lerntext.</li>
+            <li>Schau dir danach das Video an, falls du eine Wiederholung brauchst.</li>
             <li>Bearbeite dann die Aufgaben der Reihe nach oder springe flexibel.</li>
             <li>Nach dem 1. Fehler bekommst du nur eine kurze Rückmeldung.</li>
             <li>Nach dem 2. Fehler erscheint ein Tipp.</li>
@@ -1386,7 +1547,7 @@ function downloadPDF(){
   y += 34;
 
   y = addWrapped("Datum und Uhrzeit: " + dt, margin, y, maxWidth, 6, [74,101,80], 11, 'normal');
-  y = addWrapped("Bearbeitete Lerninhalte (Ausschnitt): " + document.getElementById('contentInput').value.trim(), margin, y + 2, maxWidth, 5.4, [26,46,26], 10, 'normal');
+  y = addWrapped("Bearbeitete Lerninhalte (Ausschnitt): " + document.getElementById('contentInput').innerText.trim(), margin, y + 2, maxWidth, 5.4, [26,46,26], 10, 'normal');
 
   sectionBreak(8);
 
